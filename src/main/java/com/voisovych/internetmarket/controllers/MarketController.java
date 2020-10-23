@@ -37,7 +37,7 @@ public class MarketController {
 
     @RequestMapping(value = "/edit/{id}")
     public String edit(@PathVariable int id, Model model){
-        List<Item> list = itemDAO.getEmployees();
+        List<Item> list = itemDAO.getById(id);
         model.addAttribute("edit", list.get(0));
         return "editform";
     }

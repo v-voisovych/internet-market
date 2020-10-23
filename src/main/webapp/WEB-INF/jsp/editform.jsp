@@ -13,11 +13,11 @@
 <h1>Edit Item: ${edit} </h1>
 
 <form action="/editsave" method="post">
-<%--    <c:forEach var="el" items="${edit}">${el}</c:forEach>--%>
-    <input type="text" name="name" placeholder="Name">
-    <input type="text" name="description" placeholder="Description">
-    <input type="text" name="number" placeholder="Number">
-    <input type="text" name="price" placeholder="Price">
+    <input hidden type="text" name="id" value="${edit.id}">
+    <input type="text" name="name" value="${edit.name}">
+    <input type="text" name="description" value="${edit.description}">
+    <input type="text" name="number" value="${edit.number}">
+    <input type="text" name="price" value="${edit.price}">
     <button type="submit">edit</button>
 </form>
 </body>

@@ -43,7 +43,7 @@ public class ItemDAO {
     }
 
     public List<Item> getById(int id){
-        String sql = "SELECT * FROM items WHERE id = ?";
+        String sql = "SELECT * FROM items WHERE id = "+id+"";
         return jdbcTemplate.query(sql, new RowMapper<Item> (){
             public Item mapRow(ResultSet rs, int row) throws SQLException{
                 Item item = new Item();
