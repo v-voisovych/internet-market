@@ -10,7 +10,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return name + " " + description + " " +  number + " " + price;
+        return id + " " + name + " " + description + " " +  number + " " + price;
     }
 
     public int getId() {

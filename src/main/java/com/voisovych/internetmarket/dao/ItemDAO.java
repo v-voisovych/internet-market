@@ -1,6 +1,7 @@
 package com.voisovych.internetmarket.dao;
 
 import com.voisovych.internetmarket.items.Item;
+import org.hibernate.tool.schema.ast.SqlScriptParserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,7 +24,7 @@ public class ItemDAO {
     }
 
     public int update(Item item){
-        String sql = "UPDATE items SET name_items = '"+item.getName()+"', description = '"+item.getDescription()+"', numbers = "+item.getNumber()+",price = "+item.getPrice()+" WHERE id = "+item.getId()+"";
+        String sql = "UPDATE items SET name_items = '"+item.getName()+"', description = '"+item.getDescription()+"', numbers = "+item.getNumber()+",price = "+item.getPrice()+" WHERE id ="+item.getId()+"";
         return jdbcTemplate.update(sql);
     }
 
@@ -41,9 +42,19 @@ public class ItemDAO {
         });
     }
 
-    public Item getById(int id){
+    public List<Item> getById(int id){
         String sql = "SELECT * FROM items WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{id},new BeanPropertyRowMapper<Item>(Item.class));
+        return jdbcTemplate.query(sql, new RowMapper<Item> (){
+            public Item mapRow(ResultSet rs, int row) throws SQLException{
+                Item item = new Item();
+                item.setId(rs.getInt(1));
+                item.setName(rs.getString(2));
+                item.setDescription(rs.getString(3));
+                item.setNumber(rs.getInt(4));
+                item.setPrice(rs.getInt(5));
+                return item;
+            }
+        });
     }
 
     public int delete(int id){
