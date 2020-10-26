@@ -28,7 +28,7 @@ public class ItemDAO {
         return jdbcTemplate.update(sql);
     }
 
-    public List<Item> getEmployees(){
+    public List<Item> getItems(){
         return jdbcTemplate.query("SELECT * FROM items", new RowMapper<Item>(){
             public Item mapRow(ResultSet rs, int row) throws SQLException{
                 Item item = new Item();

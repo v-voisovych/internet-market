@@ -29,7 +29,7 @@ public class MarketController {
 
     @RequestMapping("/")
     public String viewitem(Model model){
-        List<Item> list = itemDAO.getEmployees();
+        List<Item> list = itemDAO.getItems();
         model.addAttribute("list", list);
         return "viewitem";
     }
