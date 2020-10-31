@@ -17,7 +17,7 @@ public class ItemDAO {
     JdbcTemplate jdbcTemplate;
 
     public int save(Item item){
-        String sql = "INSERT INTO items(name_items, description, numbers, price) values('"+item.getName()+"', '"+item.getDescription()+"', "+item.getNumber()+", "+item.getPrice()+")";
+        String sql = "INSERT INTO items(name_items, description, numbers, price) values('" + item.getName() + "', '" + item.getDescription() + "', " + item.getNumber() + ", " + item.getPrice() + ")";
         return jdbcTemplate.update(sql);
     }
 
@@ -28,8 +28,10 @@ public class ItemDAO {
 
     public List<Item> getItems(){
         return jdbcTemplate.query("SELECT * FROM items", new RowMapper<Item>(){
+            int count = 1;
             public Item mapRow(ResultSet rs, int row) throws SQLException{
                 Item item = new Item();
+                item.setCount(count++);
                 item.setId(rs.getInt(1));
                 item.setName(rs.getString(2));
                 item.setDescription(rs.getString(3));
@@ -59,6 +61,5 @@ public class ItemDAO {
         String sql = "DELETE FROM items WHERE id = "+id+"";
         return jdbcTemplate.update(sql);
     }
-
 }
 

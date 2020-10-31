@@ -5,6 +5,7 @@ import com.voisovych.internetmarket.entity.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,9 +30,13 @@ public class MarketController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@ModelAttribute("item") Item item){
+    public String save(@ModelAttribute("item") Item item, BindingResult result, Model model){
+        if (result.hasErrors() || item.getName().equals("") || item.getDescription().equals("")){
+            model.addAttribute("error", "Введено неправильні дані!!!!");
+            return "erroradd";
+        }
         itemDAO.save(item);
-        return "redirect:/itemform";
+        return "redirect:/";
     }
     
     @RequestMapping(value = "/edit/{id}")
@@ -42,7 +47,13 @@ public class MarketController {
     }
 
     @RequestMapping(value = "/editsave", method = RequestMethod.POST)
-    public String editSave(@ModelAttribute("item") Item item){
+    public String editSave(@ModelAttribute("item") Item item, BindingResult result, Model model){
+        if (result.hasErrors() || item.getName().equals("") || item.getDescription().equals("")){
+            model.addAttribute("error", "Введено неправильні дані!!!!");
+            int id = item.getId();
+            model.addAttribute("id", id);
+            return "erroredit";
+        }
         itemDAO.update(item);
         return "redirect:/";
     }

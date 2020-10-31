@@ -7,6 +7,7 @@ public class Item {
     private String description;
     private int number;
     private float price;
+    private int count;
 
     @Override
     public String toString() {
@@ -51,5 +52,13 @@ public class Item {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }
