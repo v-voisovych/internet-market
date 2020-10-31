@@ -1,4 +1,4 @@
-package com.voisovych.internetmarket.items;
+package com.voisovych.internetmarket.entity;
 
 public class Item {
 

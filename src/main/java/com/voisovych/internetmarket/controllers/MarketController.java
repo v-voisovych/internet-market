@@ -1,7 +1,7 @@
 package com.voisovych.internetmarket.controllers;
 
 import com.voisovych.internetmarket.dao.ItemDAO;
-import com.voisovych.internetmarket.items.Item;
+import com.voisovych.internetmarket.entity.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +15,13 @@ public class MarketController {
     @Autowired
     ItemDAO itemDAO;
 
+    @RequestMapping("/")
+    public String viewitem(Model model){
+        List<Item> list = itemDAO.getItems();
+        model.addAttribute("list", list);
+        return "viewitem";
+    }
+
     @RequestMapping("/itemform")
     public String showform(Model model){
         model.addAttribute("command", new Item());
@@ -24,17 +31,9 @@ public class MarketController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@ModelAttribute("item") Item item){
         itemDAO.save(item);
-        return "redirect:/";
+        return "redirect:/itemform";
     }
-
-    @RequestMapping("/")
-    public String viewitem(Model model){
-        List<Item> list = itemDAO.getItems();
-        model.addAttribute("list", list);
-        return "viewitem";
-    }
-
-
+    
     @RequestMapping(value = "/edit/{id}")
     public String edit(@PathVariable int id, Model model){
         List<Item> list = itemDAO.getById(id);
