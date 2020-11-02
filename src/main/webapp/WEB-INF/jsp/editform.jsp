@@ -30,7 +30,7 @@
             </div>
             <div class="title_item">
                 <div>
-                    <h1>Редагований товар: ${edit.name}, ${edit.description}, ${edit.number}, ${edit.price}</h1>
+                    <h1>Редагований товар: ${edit.name}; ${edit.description}; ${edit.number}; ${edit.price}</h1>
                     <form action="/editsave" method="post">
                         <p><input hidden type="text" name="id" value="${edit.id}"></p>
                         <p><input type="text" name="name" value="${edit.name}"></p>
