@@ -52,22 +52,25 @@ nav a {
 
 #link1 {
     width: 100%;
-}
-
-#link1 img {
-    max-width: 100%;
+    background-image: url(../img/ps7.jpg);
+    background-repeat: no-repeat;
+    min-height: 1080px;
 }
 
 .conteiner {
     background: #000;
+    margin-top: -44px;
+    position: relative;
 }
 
 .title_item {
     width: 60%;
-    position: absolute;
-    top: 28%;
-    left: 20%;
+    margin-left: 20%;
     border-radius: 5px;
+}
+
+#cont {
+    padding-top: 38%;
 }
 
 h1 {
@@ -91,6 +94,10 @@ table th, td {
     border: 5px solid black;
 }
 
+footer {
+    margin-top: -1%;
+}
+
 footer div {
     display: inline-block;
     width: 100%;
@@ -106,7 +113,7 @@ footer ul {
     font-size: 20px;
     margin-top: -3px;
     height: 35px;
-    padding-top: 11px;
+    padding-top: 2%;
 }
 
 footer li {

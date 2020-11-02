@@ -26,27 +26,24 @@
 
         <div class="conteiner">
             <div id="link1">
-                <img src="/img/ps7.jpg">
-            </div>
-            <div class="title_item">
-                <div>
-                    <h1>Наші товари.</h1>
-
-                    <table>
-                        <tr><th>Id</th><th>Найменування</th><th>Опис</th><th>Кількість</th><th>Ціна</th><th>Редагувати</th><th>Видалити</th></tr>
-                            <c:forEach var="el" items="${list}">
-                                <tr>
-                                    <td>${el.count}</td>
-                                    <td>${el.name}</td>
-                                    <td>${el.description}</td>
-                                    <td>${el.number}</td>
-                                    <td>${el.price}</td>
-                                    <td><button type="button"><a href="/edit/${el.id}">edit</a></button></td>
-                                    <td><button type="button"><a href="/delete/${el.id}">delete</a></button></td>
-                                </tr>
-                            </c:forEach>
-                    </table>
-
+                <div class="title_item">
+                    <div id="cont">
+                        <h1>Наші товари.</h1>
+                        <table>
+                            <tr><th>Id</th><th>Найменування</th><th>Опис</th><th>Кількість</th><th>Ціна</th><th>Редагувати</th><th>Видалити</th></tr>
+                                <c:forEach var="el" items="${list}">
+                                    <tr>
+                                        <td>${el.count}</td>
+                                        <td>${el.name}</td>
+                                        <td>${el.description}</td>
+                                        <td>${el.number}</td>
+                                        <td>${el.price}</td>
+                                        <td><button type="button"><a href="/edit/${el.id}">edit</a></button></td>
+                                        <td><button type="button"><a href="/delete/${el.id}">delete</a></button></td>
+                                    </tr>
+                                </c:forEach>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
