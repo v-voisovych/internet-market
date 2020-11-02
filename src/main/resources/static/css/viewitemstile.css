@@ -65,10 +65,9 @@ nav a {
 .title_item {
     width: 60%;
     position: absolute;
-    top: 43%;
+    top: 28%;
     left: 20%;
     border-radius: 5px;
-    /*background: #888888;*/
 }
 
 h1 {
