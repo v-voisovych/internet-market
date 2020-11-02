@@ -36,7 +36,7 @@ public class MarketController {
             return "erroradd";
         }
         itemDAO.save(item);
-        return "redirect:/";
+        return "redirect:/itemform";
     }
     
     @RequestMapping(value = "/edit/{id}")

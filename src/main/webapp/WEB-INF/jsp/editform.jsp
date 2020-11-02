@@ -11,6 +11,7 @@
     </head>
 
     <body>
+
         <header>
             <div class="logo">
                 <img src="/img/logo.png">
@@ -20,6 +21,7 @@
                 <ul>
                     <li><a href="/">Наші товари.</a></li>
                     <li><a href="/itemform">Додати товар.</a></li>
+                    <li><a name="verh"></a></li>
                 </ul>
             </nav>
         </header>
