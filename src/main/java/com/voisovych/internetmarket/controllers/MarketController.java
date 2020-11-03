@@ -20,6 +20,22 @@ public class MarketController {
     public String viewitem(Model model){
         List<Item> list = itemDAO.getItems();
         model.addAttribute("list", list);
+        return "allitems";
+    }
+
+    @RequestMapping("/{type}")
+    public String viewItemByType(@PathVariable String type, Model model){
+        List<Item> list = itemDAO.getItemsByType(type);
+        model.addAttribute("list", list);
+        if(type.equals("pc")) {
+            model.addAttribute("type", "Комп'ютери");
+        }else if(type.equals("laptop")){
+            model.addAttribute("type", "Ноутбуки");
+        }else if (type.equals("phone")){
+            model.addAttribute("type", "Телефони");
+        }else {
+            model.addAttribute("type", "Консолі");
+        }
         return "viewitem";
     }
 

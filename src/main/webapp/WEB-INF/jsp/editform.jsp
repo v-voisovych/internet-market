@@ -20,6 +20,10 @@
             <nav>
                 <ul>
                     <li><a href="/">Наші товари.</a></li>
+                    <li><a href="/phone">Телефони.</a></li>
+                    <li><a href="/console">Консолі.</a></li>
+                    <li><a href="/laptop">Ноутбуки.</a></li>
+                    <li><a href="/pc">Комп'ютери.</a></li>
                     <li><a href="/itemform">Додати товар.</a></li>
                     <li><a name="verh"></a></li>
                 </ul>
@@ -32,13 +36,21 @@
             </div>
             <div class="title_item">
                 <div>
-                    <h1>Редагований товар: ${edit.name}; ${edit.description}; ${edit.number}; ${edit.price}</h1>
+                    <h1>Редагований товар: ${edit.name}; ${edit.description}; ${edit.number}; ${edit.price}; ${edit.type}</h1>
                     <form action="/editsave" method="post">
                         <p><input hidden type="text" name="id" value="${edit.id}"></p>
                         <p><input type="text" name="name" value="${edit.name}"></p>
                         <p><input type="text" name="description" value="${edit.description}"></p>
                         <p><input type="text" name="number" value="${edit.number}"></p>
                         <p><input type="text" name="price" value="${edit.price}"></p>
+                        <p>
+                            <select name="type">
+                                <option value="phone">Телефон</option>
+                                <option value="console">Консоль</option>
+                                <option value="laptop">Ноутбук</option>
+                                <option value="pc">Комп'ютер</option>
+                            </select>
+                        </p>
                         <p><button type="submit" class="btn btn-warning">Save</button></p>
                     </form>
                 </div>
@@ -49,6 +61,10 @@
             <div>
                 <ul>
                     <li><a href="/">Наші товари.</a></li>
+                    <li><a href="/phone">Телефони.</a></li>
+                    <li><a href="/console">Консолі.</a></li>
+                    <li><a href="/laptop">Ноутбуки.</a></li>
+                    <li><a href="/pc">Комп'ютери.</a></li>
                     <li><a href="/itemform">Додати товар.</a></li>
                     <li><a href="#verh"> Наверх.</a></li>
                 </ul>

@@ -20,6 +20,10 @@
             <nav>
                 <ul>
                     <li><a href="/">Наші товари.</a></li>
+                    <li><a href="/phone">Телефони.</a></li>
+                    <li><a href="/console">Консолі.</a></li>
+                    <li><a href="/laptop">Ноутбуки.</a></li>
+                    <li><a href="/pc">Комп'ютери.</a></li>
                     <li><a href="/itemform">Додати товар.</a></li>
                 </ul>
             </nav>
@@ -40,6 +44,10 @@
             <div>
                 <ul>
                     <li><a href="/">Наші товари.</a></li>
+                    <li><a href="/phone">Телефони.</a></li>
+                    <li><a href="/console">Консолі.</a></li>
+                    <li><a href="/laptop">Ноутбуки.</a></li>
+                    <li><a href="/pc">Комп'ютери.</a></li>
                     <li><a href="/itemform">Додати товар.</a></li>
                     <li><a href="#verh"> Наверх.</a></li>
                 </ul>

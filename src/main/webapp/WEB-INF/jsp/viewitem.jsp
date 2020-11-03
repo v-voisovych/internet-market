@@ -19,6 +19,10 @@
             <nav>
                 <ul>
                     <li><a href="/">Наші товари.</a></li>
+                    <li><a href="/phone">Телефони.</a></li>
+                    <li><a href="/console">Консолі.</a></li>
+                    <li><a href="/laptop">Ноутбуки.</a></li>
+                    <li><a href="/pc">Комп'ютери.</a></li>
                     <li><a href="/itemform">Додати товар.</a></li>
                     <li><a name="verh"></a></li>
                 </ul>
@@ -29,7 +33,7 @@
             <div id="link1">
                 <div class="title_item">
                     <div id="cont">
-                        <h1>Наші товари.</h1>
+                        <h1>${type}.</h1>
                         <table>
                             <tr><th>Id</th><th>Найменування</th><th>Опис</th><th>Кількість</th><th>Ціна</th><th>Редагувати</th><th>Видалити</th></tr>
                                 <c:forEach var="el" items="${list}">
@@ -53,6 +57,10 @@
             <div>
                 <ul>
                     <li><a href="/">Наші товари.</a></li>
+                    <li><a href="/phone">Телефони.</a></li>
+                    <li><a href="/console">Консолі.</a></li>
+                    <li><a href="/laptop">Ноутбуки.</a></li>
+                    <li><a href="/pc">Комп'ютери.</a></li>
                     <li><a href="/itemform">Додати товар.</a></li>
                     <li><a href="#verh"> Вгору.</a></li>
                 </ul>

@@ -4,14 +4,24 @@ public class Item {
 
     private int id;
     private String name;
+    private String type;
     private String description;
     private int number;
     private float price;
+
     private int count;
 
     @Override
     public String toString() {
         return name + " " + description + " " +  number + " " + price;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getId() {
@@ -54,11 +64,11 @@ public class Item {
         this.price = price;
     }
 
-    public int getCount() {
-        return count;
-    }
-
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public int getCount() {
+        return count;
     }
 }

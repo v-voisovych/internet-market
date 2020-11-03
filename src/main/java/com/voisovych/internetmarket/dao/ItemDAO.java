@@ -17,12 +17,14 @@ public class ItemDAO {
     JdbcTemplate jdbcTemplate;
 
     public int save(Item item){
-        String sql = "INSERT INTO items(name_items, description, numbers, price) values('" + item.getName() + "', '" + item.getDescription() + "', " + item.getNumber() + ", " + item.getPrice() + ")";
+        String sql = "INSERT INTO items(name_items, description, numbers, price, type) values('" + item.getName() + "'" +
+                     ", '" + item.getDescription() + "', " + item.getNumber() + ", " + item.getPrice() + ", '"+item.getType()+"')";
         return jdbcTemplate.update(sql);
     }
 
     public int update(Item item){
-        String sql = "UPDATE items SET name_items = '"+item.getName()+"', description = '"+item.getDescription()+"', numbers = "+item.getNumber()+",price = "+item.getPrice()+" WHERE id ="+item.getId()+"";
+        String sql = "UPDATE items SET name_items = '"+item.getName()+"', description = '"+item.getDescription()+"'," +
+                     "numbers = "+item.getNumber()+",price = "+item.getPrice()+", type = '"+item.getType()+"' WHERE id ="+item.getId()+"";
         return jdbcTemplate.update(sql);
     }
 
@@ -37,6 +39,16 @@ public class ItemDAO {
                 item.setDescription(rs.getString(3));
                 item.setNumber(rs.getInt(4));
                 item.setPrice(rs.getInt(5));
+                String type = rs.getNString(6);
+                if(type.equals("pc")) {
+                    item.setType("Комп'ютер");
+                }else if(type.equals("laptop")){
+                    item.setType("Ноутбук");
+                }else if (type.equals("console")){
+                    item.setType("Консоль");
+                }else {
+                    item.setType("Телефон");
+                }
                 return item;
             }
         });
@@ -52,6 +64,33 @@ public class ItemDAO {
                 item.setDescription(rs.getString(3));
                 item.setNumber(rs.getInt(4));
                 item.setPrice(rs.getInt(5));
+                String type = rs.getNString(6);
+                if(type.equals("pc")) {
+                    item.setType("Комп'ютер");
+                }else if(type.equals("laptop")){
+                    item.setType("Ноутбук");
+                }else if (type.equals("console")){
+                    item.setType("Консоль");
+                }else {
+                    item.setType("Телефон");
+                }
+                return item;
+            }
+        });
+    }
+
+    public List<Item> getItemsByType(String type){
+        return jdbcTemplate.query("SELECT * FROM items WHERE type = '"+type+"'", new RowMapper<Item>(){
+            int count = 1;
+            public Item mapRow(ResultSet rs, int row) throws SQLException{
+                Item item = new Item();
+                item.setCount(count++);
+                item.setId(rs.getInt(1));
+                item.setName(rs.getString(2));
+                item.setDescription(rs.getString(3));
+                item.setNumber(rs.getInt(4));
+                item.setPrice(rs.getInt(5));
+                item.setType(rs.getNString(6));
                 return item;
             }
         });
