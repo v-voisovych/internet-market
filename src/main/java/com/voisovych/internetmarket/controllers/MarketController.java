@@ -79,7 +79,18 @@ public class MarketController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable int id){
+        List<Item> list = itemDAO.getById(id);
         itemDAO.delete(id);
-        return "redirect:/";
+        Item item = list.get(0);
+        String s = item.getType();
+        if(s.equals("Комп'ютер")) {
+            return "redirect://localhost:8080/pc";
+        }else if(s.equals("Ноутбук")){
+            return "redirect://localhost:8080/laptop";
+        }else if (s.equals("Телефон")){
+            return "redirect://localhost:8080/phone";
+        }else {
+            return "redirect://localhost:8080/console";
+        }
     }
 }
