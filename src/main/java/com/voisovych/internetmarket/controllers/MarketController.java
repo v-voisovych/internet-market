@@ -26,6 +26,9 @@ public class MarketController {
     @RequestMapping("/{type}")
     public String viewItemByType(@PathVariable String type, Model model){
         List<Item> list = itemDAO.getItemsByType(type);
+        if (list.isEmpty()){
+            model.addAttribute("nothing", ": відсутні");
+        }
         model.addAttribute("list", list);
         if(type.equals("pc")) {
             model.addAttribute("type", "Комп'ютери");

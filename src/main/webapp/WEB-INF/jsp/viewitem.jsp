@@ -33,7 +33,9 @@
             <div id="link1">
                 <div class="title_item">
                     <div id="cont">
-                        <h1>${type}.</h1>
+                        <h1>${type}
+                            ${nothing}.
+                        </h1>
                         <table>
                             <tr><th>Id</th><th>Найменування</th><th>Опис</th><th>Кількість</th><th>Ціна</th><th>Редагувати</th><th>Видалити</th></tr>
                                 <c:forEach var="el" items="${list}">
