@@ -1,6 +1,6 @@
 package com.voisovych.internetmarket.dao;
 
-import com.voisovych.internetmarket.entity.Item;
+import com.voisovych.internetmarket.dao.entity.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

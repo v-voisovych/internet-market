@@ -19,10 +19,10 @@
             <nav>
                 <ul>
                     <li><a href="/">Наші товари.</a></li>
-                    <li><a href="/phone">Телефони.</a></li>
-                    <li><a href="/console">Консолі.</a></li>
-                    <li><a href="/laptop">Ноутбуки.</a></li>
-                    <li><a href="/pc">Комп'ютери.</a></li>
+                    <li><a href="/type?type=phone">Телефони.</a></li>
+                    <li><a href="/type?type=console">Консолі.</a></li>
+                    <li><a href="/type?type=laptop">Ноутбуки.</a></li>
+                    <li><a href="/type?type=pc">Комп'ютери.</a></li>
                     <li><a href="/itemform">Додати товар.</a></li>
                     <li><a name="verh"></a></li>
                 </ul>
@@ -44,8 +44,8 @@
                                     <td>${el.number}</td>
                                     <td>${el.price}</td>
                                     <td>${el.type}</td>
-                                    <td><button type="button"><a href="/edit/${el.id}">edit</a></button></td>
-                                    <td><button type="button"><a href="/delete/${el.id}">delete</a></button></td>
+                                    <td><button type="button"><a href="/edit?id=${el.id}">edit</a></button></td>
+                                    <td><button type="button"><a href="/delete?id=${el.id}">delete</a></button></td>
                                 </tr>
                             </c:forEach>
                         </table>
@@ -58,10 +58,10 @@
             <div>
                 <ul>
                     <li><a href="/">Наші товари.</a></li>
-                    <li><a href="/phone">Телефони.</a></li>
-                    <li><a href="/console">Консолі.</a></li>
-                    <li><a href="/laptop">Ноутбуки.</a></li>
-                    <li><a href="/pc">Комп'ютери.</a></li>
+                    <li><a href="/type?type=phone">Телефони.</a></li>
+                    <li><a href="/type?type=console">Консолі.</a></li>
+                    <li><a href="/type?type=laptop">Ноутбуки.</a></li>
+                    <li><a href="/type?type=pc">Комп'ютери.</a></li>
                     <li><a href="/itemform">Додати товар.</a></li>
                     <li><a href="#verh"> Вгору.</a></li>
                 </ul>

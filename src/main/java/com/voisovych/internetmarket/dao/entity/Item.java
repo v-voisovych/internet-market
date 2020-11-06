@@ -1,4 +1,4 @@
-package com.voisovych.internetmarket.entity;
+package com.voisovych.internetmarket.dao.entity;
 
 public class Item {
 

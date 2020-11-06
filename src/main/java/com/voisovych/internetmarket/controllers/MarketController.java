@@ -1,7 +1,7 @@
 package com.voisovych.internetmarket.controllers;
 
 import com.voisovych.internetmarket.dao.ItemDAO;
-import com.voisovych.internetmarket.entity.Item;
+import com.voisovych.internetmarket.dao.entity.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +23,8 @@ public class MarketController {
         return "allitems";
     }
 
-    @RequestMapping("/{type}")
-    public String viewItemByType(@PathVariable String type, Model model){
+    @RequestMapping("/type")
+    public String viewItemByType(@RequestParam String type, Model model){
         List<Item> list = itemDAO.getItemsByType(type);
         if (list.isEmpty()){
             model.addAttribute("nothing", ": відсутні");
@@ -58,8 +58,8 @@ public class MarketController {
         return "redirect:/itemform";
     }
     
-    @RequestMapping(value = "/edit/{id}")
-    public String edit(@PathVariable int id, Model model){
+    @RequestMapping(value = "/edit")
+    public String edit(@RequestParam int id, Model model){
         List<Item> list = itemDAO.getById(id);
         model.addAttribute("edit", list.get(0));
         return "editform";
@@ -77,20 +77,9 @@ public class MarketController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String delete(@PathVariable int id){
-        List<Item> list = itemDAO.getById(id);
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String delete(@RequestParam int id){
         itemDAO.delete(id);
-        Item item = list.get(0);
-        String s = item.getType();
-        if(s.equals("Комп'ютер")) {
-            return "redirect://localhost:8080/pc";
-        }else if(s.equals("Ноутбук")){
-            return "redirect://localhost:8080/laptop";
-        }else if (s.equals("Телефон")){
-            return "redirect://localhost:8080/phone";
-        }else {
-            return "redirect://localhost:8080/console";
-        }
+        return "redirect:/";
     }
 }
