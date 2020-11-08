@@ -35,7 +35,7 @@
                     <div id="cont">
                         <h1>Наші товари.</h1>
                         <table>
-                            <tr><th>Id</th><th>Найменування</th><th>Опис</th><th>Кількість</th><th>Ціна</th><th>Категорія товару</th><th>Редагувати</th><th>Видалити</th></tr>
+                            <tr><th>Номер</th><th>Найменування</th><th>Опис</th><th>Кількість</th><th>Ціна</th><th>Категорія товару</th><th>Редагувати</th><th>Видалити</th></tr>
                             <c:forEach var="el" items="${list}">
                                 <tr>
                                     <td>${el.count}</td>

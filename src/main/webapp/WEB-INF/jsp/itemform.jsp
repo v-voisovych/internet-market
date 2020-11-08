@@ -37,6 +37,7 @@
                 <div>
                     <h1>Додайте товар.</h1>
                         <form action="/save" method="post">
+                            <input type="text" name="count" placeholder="Count">
                             <input type="text" name="name" placeholder="Name">
                             <input type="text" name="description" placeholder="Description">
                             <input type="text" name="number" placeholder="Number">

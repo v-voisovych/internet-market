@@ -35,7 +35,7 @@
             </div>
             <div class="title_item">
                 <div>
-                    <h1>${error} <a href="/edit/${id}">Спробувати ще.</a></h1>
+                    <h1>${error} <a href="/edit?id=${id}">Спробувати ще.</a></h1>
                 </div>
             </div>
         </div>

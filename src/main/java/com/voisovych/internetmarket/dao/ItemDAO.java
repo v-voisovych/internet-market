@@ -1,6 +1,7 @@
 package com.voisovych.internetmarket.dao;
 
 import com.voisovych.internetmarket.dao.entity.Item;
+import com.voisovych.internetmarket.servises.ItemStandartServise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -54,30 +55,31 @@ public class ItemDAO {
         });
     }
 
-    public List<Item> getById(int id){
-        String sql = "SELECT * FROM items WHERE id = "+id+"";
-        return jdbcTemplate.query(sql, new RowMapper<Item> (){
-            public Item mapRow(ResultSet rs, int row) throws SQLException{
-                Item item = new Item();
-                item.setId(rs.getInt(1));
-                item.setName(rs.getString(2));
-                item.setDescription(rs.getString(3));
-                item.setNumber(rs.getInt(4));
-                item.setPrice(rs.getInt(5));
-                String type = rs.getNString(6);
-                if(type.equals("pc")) {
-                    item.setType("Комп'ютер");
-                }else if(type.equals("laptop")){
-                    item.setType("Ноутбук");
-                }else if (type.equals("console")){
-                    item.setType("Консоль");
-                }else {
-                    item.setType("Телефон");
-                }
-                return item;
-            }
-        });
-    }
+//    public List<Item> getById(long id){
+//        return itemServise.getById(id);
+//        String sql = "SELECT * FROM item WHERE id = "+id+"";
+//        return jdbcTemplate.query(sql, new RowMapper<Item> (){
+//            public Item mapRow(ResultSet rs, int row) throws SQLException{
+//                Item item = new Item();
+//                item.setId(rs.getInt(1));
+//                item.setName(rs.getString(2));
+//                item.setDescription(rs.getString(3));
+//                item.setNumber(rs.getInt(4));
+//                item.setPrice(rs.getInt(5));
+//                String type = rs.getNString(6);
+//                if(type.equals("pc")) {
+//                    item.setType("Комп'ютер");
+//                }else if(type.equals("laptop")){
+//                    item.setType("Ноутбук");
+//                }else if (type.equals("console")){
+//                    item.setType("Консоль");
+//                }else {
+//                    item.setType("Телефон");
+//                }
+//                return item;
+//            }
+//        });
+//    }
 
     public List<Item> getItemsByType(String type){
         return jdbcTemplate.query("SELECT * FROM items WHERE type = '"+type+"'", new RowMapper<Item>(){

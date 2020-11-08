@@ -1,14 +1,20 @@
 package com.voisovych.internetmarket.dao.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Item {
 
-    private int id;
+    @Id
+    @GeneratedValue
+    private long id;
     private String name;
     private String type;
     private String description;
     private int number;
     private float price;
-
     private int count;
 
     @Override
@@ -24,7 +30,7 @@ public class Item {
         this.type = type;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
