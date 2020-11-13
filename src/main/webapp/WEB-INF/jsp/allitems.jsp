@@ -34,21 +34,36 @@
                 <div class="title_item">
                     <div id="cont">
                         <h1>Наші товари.</h1>
+
+                        <form action="/date">
+                            <p>  <input type="text" name="creationDateOne" placeholder="creationDateOne"> </p>
+                            <p>  <input type="text" name="creationDateTwo" placeholder="creationDateTwo"> </p>
+                            <button type="submit" class="btn btn-warning">search</button>
+                        </form>
+
                         <table>
-                            <tr><th>Номер</th><th>Найменування</th><th>Опис</th><th>Кількість</th><th>Ціна</th><th>Категорія товару</th><th>Редагувати</th><th>Видалити</th></tr>
+                            <tr><th>Номер</th><th>Найменування</th><th>Опис</th><th>Кількість</th><th>Ціна</th><th>Категорія товару</th><th>Дата створення</th><th>Редагувати</th><th>Видалити</th></tr>
                             <c:forEach var="el" items="${list}">
                                 <tr>
                                     <td>${el.count}</td>
-                                    <td>${el.name}</td>
+                                    <td><a href="/search?name=${el.name}"> ${el.name}</a></td>
                                     <td>${el.description}</td>
                                     <td>${el.number}</td>
                                     <td>${el.price}</td>
                                     <td>${el.type}</td>
+                                    <td>${el.creationDate}</td>
                                     <td><button type="button"><a href="/edit?id=${el.id}">edit</a></button></td>
                                     <td><button type="button"><a href="/delete?id=${el.id}">delete</a></button></td>
                                 </tr>
                             </c:forEach>
                         </table>
+
+                        <form action="/typeandname">
+                            <p>  <input type="text" name="type" placeholder="type"> </p>
+                            <p>  <input type="text" name="name" placeholder="name"> </p>
+                            <button type="submit" class="btn btn-warning">search</button>
+                        </form>
+
                     </div>
                 </div>
             </div>

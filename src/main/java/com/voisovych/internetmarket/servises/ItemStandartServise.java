@@ -1,6 +1,6 @@
 package com.voisovych.internetmarket.servises;
 
-import com.voisovych.internetmarket.dao.entity.Item;
+import com.voisovych.internetmarket.models.Item;
 import com.voisovych.internetmarket.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

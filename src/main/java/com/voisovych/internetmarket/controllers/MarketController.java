@@ -1,6 +1,7 @@
 package com.voisovych.internetmarket.controllers;
 
-import com.voisovych.internetmarket.dao.entity.Item;
+import com.voisovych.internetmarket.models.Item;
+import com.voisovych.internetmarket.servises.ItemCRUDService;
 import com.voisovych.internetmarket.servises.ItemCastomService;
 import com.voisovych.internetmarket.servises.ItemStandartServise;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
 
 @Controller
 public class MarketController {
@@ -18,6 +24,9 @@ public class MarketController {
 
     @Autowired
     ItemCastomService itemCastomService;
+
+    @Autowired
+    ItemCRUDService itemCRUDService;
 
     @RequestMapping("/")
     public String viewitem (Model model){
@@ -96,5 +105,23 @@ public class MarketController {
     public String delete (@RequestParam long id){
         itemStandartServise.delete(id);
         return "redirect:/";
+    }
+
+    @RequestMapping("/search")
+    public String searchByName (@RequestParam String name, Model model) {
+        model.addAttribute("list", itemCRUDService.searchByName(name));
+        return "allitems";
+    }
+
+    @RequestMapping("/typeandname")
+    public String search (@RequestParam String type, @RequestParam String name,Model model) {
+        model.addAttribute("list", itemCRUDService.searchByTypeName(type, name));
+        return "allitems";
+    }
+
+    @RequestMapping("/date")
+    public String searchByDate (@RequestParam String creationDateOne, @RequestParam String creationDateTwo, Model model) throws ParseException {
+        model.addAttribute("list", itemCRUDService.findBetween(creationDateOne, creationDateTwo));
+        return "allitems";
     }
 }

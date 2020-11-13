@@ -1,11 +1,14 @@
-package com.voisovych.internetmarket.dao.entity;
+package com.voisovych.internetmarket.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class Item {
+
 
     @Id
     @GeneratedValue
@@ -17,9 +20,13 @@ public class Item {
     private float price;
     private int count;
 
+    @CreationTimestamp
+    @Temporal (TemporalType.DATE)
+    private Date creationDate;
+
     @Override
     public String toString() {
-        return name + " " + description + " " +  number + " " + price;
+        return count + " " + name + " " + description + " " +  number + " " + price + " " + type + " " + creationDate;
     }
 
     public String getType() {
@@ -76,5 +83,17 @@ public class Item {
 
     public int getCount() {
         return count;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creation_date) {
+        this.creationDate = creation_date;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

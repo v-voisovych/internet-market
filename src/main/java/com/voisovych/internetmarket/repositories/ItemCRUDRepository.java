@@ -1,0 +1,20 @@
+package com.voisovych.internetmarket.repositories;
+
+import com.voisovych.internetmarket.models.Item;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Date;
+import java.util.List;
+
+@Repository
+public interface ItemCRUDRepository extends CrudRepository<Item,Long> {
+
+    List<Item> findAllByName(String name);
+
+    List<Item> findItemsByTypeAndName(String type, String name);
+
+//    List<Item> findAllByCreationDateAfterOrderByCreationDate(Date creationDate);
+
+    List<Item> findAllByCreationDateBetween(Date creationDateOne, Date creationDateTwo);
+}
