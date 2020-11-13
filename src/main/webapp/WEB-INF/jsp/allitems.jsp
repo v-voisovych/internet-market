@@ -51,7 +51,7 @@
                                     <td>${el.number}</td>
                                     <td>${el.price}</td>
                                     <td>${el.type}</td>
-                                    <td>${el.creationDate}</td>
+                                    <td><a href="searchbydate?creationDate=${el.creationDate}">${el.creationDate}</a></td>
                                     <td><button type="button"><a href="/edit?id=${el.id}">edit</a></button></td>
                                     <td><button type="button"><a href="/delete?id=${el.id}">delete</a></button></td>
                                 </tr>

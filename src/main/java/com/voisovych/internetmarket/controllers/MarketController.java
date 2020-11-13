@@ -119,6 +119,12 @@ public class MarketController {
         return "allitems";
     }
 
+    @RequestMapping("/searchbydate")
+    public String searchDate (@RequestParam String creationDate, Model model) throws ParseException {
+        model.addAttribute("list", itemCRUDService.searchByDate(creationDate));
+        return "allitems";
+    }
+
     @RequestMapping("/date")
     public String searchByDate (@RequestParam String creationDateOne, @RequestParam String creationDateTwo, Model model) throws ParseException {
         model.addAttribute("list", itemCRUDService.findBetween(creationDateOne, creationDateTwo));

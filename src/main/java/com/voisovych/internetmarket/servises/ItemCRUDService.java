@@ -24,10 +24,10 @@ public class ItemCRUDService {
         return itemCRUDRepository.findItemsByTypeAndName(type, name);
     }
 
-//    public List<Item> searchByDate(String date) throws ParseException {
-//        Date creationDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-//        return itemCRUDRepository.findAllByCreationDateAfterOrderByCreationDate(creationDate);
-//    }
+    public List<Item> searchByDate(String date) throws ParseException {
+        Date creationDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        return itemCRUDRepository.findAllByCreationDateBeforeOrderByCreationDate(creationDate);
+    }
 
     public List<Item> findBetween (String dateOne, String dateTwo) throws ParseException {
         Date creationDateOne = new SimpleDateFormat("yyyy-MM-dd").parse(dateOne);

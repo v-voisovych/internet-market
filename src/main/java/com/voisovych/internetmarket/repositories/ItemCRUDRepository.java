@@ -14,7 +14,7 @@ public interface ItemCRUDRepository extends CrudRepository<Item,Long> {
 
     List<Item> findItemsByTypeAndName(String type, String name);
 
-//    List<Item> findAllByCreationDateAfterOrderByCreationDate(Date creationDate);
+    List<Item> findAllByCreationDateBeforeOrderByCreationDate(Date creationDate);
 
     List<Item> findAllByCreationDateBetween(Date creationDateOne, Date creationDateTwo);
 }
