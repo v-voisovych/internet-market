@@ -44,6 +44,7 @@
                         <p><input type="text" name="description" value="${edit.description}"></p>
                         <p><input type="text" name="number" value="${edit.number}"></p>
                         <p><input type="text" name="price" value="${edit.price}"></p>
+                        <p><input type="text" name="creationDate" value="${edit.creationDate}"></p>
                         <p>
                             <select name="type">
                                 <option value="phone">Телефон</option>

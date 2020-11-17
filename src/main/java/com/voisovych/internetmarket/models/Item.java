@@ -16,9 +16,9 @@ public class Item {
     private String name;
     private String type;
     private String description;
-    private int number;
-    private float price;
-    private int count;
+    private Integer number;
+    private Float price;
+    private Integer count;
 
     @CreationTimestamp
     @Temporal (TemporalType.DATE)
@@ -61,27 +61,27 @@ public class Item {
         this.description = description;
     }
 
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
-    public void setCount(int count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 
-    public int getCount() {
+    public Integer getCount() {
         return count;
     }
 

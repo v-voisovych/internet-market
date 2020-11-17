@@ -90,13 +90,16 @@ public class MarketController {
     }
 
     @RequestMapping(value = "/editsave", method = RequestMethod.POST)
-    public String editSave (@ModelAttribute Item item, BindingResult result, Model model){
-        if (result.hasErrors() || item.getName().equals("") || item.getDescription().equals("")) {
-            model.addAttribute("error", "Введено неправильні дані!!!!");
+    public String editSave (@ModelAttribute Item item, BindingResult result, String creationDate, Model model) throws ParseException {
+        if (result.hasErrors()) {
+            Date creationDateP = new SimpleDateFormat("yyyy-MM-dd").parse(creationDate);
+            item.setCreationDate(creationDateP);
+        }
+//            model.addAttribute("error", "Введено неправильні дані!!!!");
             long id = item.getId();
             model.addAttribute("id", id);
-            return "erroredit";
-        }
+//            return "erroredit";
+
         itemStandartServise.itemSave(item);
         return "redirect:/";
     }
@@ -107,27 +110,53 @@ public class MarketController {
         return "redirect:/";
     }
 
-    @RequestMapping("/search")
-    public String searchByName (@RequestParam String name, Model model) {
-        model.addAttribute("list", itemCRUDService.searchByName(name));
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String search (@ModelAttribute Item item, BindingResult result, String creationDate,String count, String price, String number, Model model) throws ParseException {
+        if (result.hasErrors()) {
+            if (creationDate.equals("")) {
+                item.setCreationDate(null);
+            }else {
+                Date creationDateP = new SimpleDateFormat("yyyy-MM-dd").parse(creationDate);
+                item.setCreationDate(creationDateP);
+            }
+            if (count.equals("")) {
+                item.setCount(null);
+            }
+            if (price.equals("")) {
+                item.setPrice(null);
+            }
+            if (number.equals("")) {
+                item.setNumber(null);
+            }
+        }
+        if (item.getName().equals("")){
+            item.setName(null);
+        }
+        if (item.getType().equals("")){
+            item.setType(null);
+        }
+        if (item.getDescription().equals("")){
+            item.setDescription(null);
+        }
+        model.addAttribute("list", itemCRUDService.search(item));
         return "allitems";
     }
 
-    @RequestMapping("/typeandname")
-    public String search (@RequestParam String type, @RequestParam String name,Model model) {
-        model.addAttribute("list", itemCRUDService.searchByTypeName(type, name));
-        return "allitems";
-    }
+//    @RequestMapping("/typeandname")
+//    public String search (@RequestParam String type, @RequestParam String name,Model model) {
+//        model.addAttribute("list", itemCRUDService.searchByTypeName(type, name));
+//        return "allitems";
+//    }
 
-    @RequestMapping("/searchbydate")
-    public String searchDate (@RequestParam String creationDate, Model model) throws ParseException {
-        model.addAttribute("list", itemCRUDService.searchByDate(creationDate));
-        return "allitems";
-    }
+//    @RequestMapping("/searchbydate")
+//    public String searchDate (@RequestParam String creationDate, Model model) throws ParseException {
+//        model.addAttribute("list", itemCRUDService.searchByDate(creationDate));
+//        return "allitems";
+//    }
 
-    @RequestMapping("/date")
-    public String searchByDate (@RequestParam String creationDateOne, @RequestParam String creationDateTwo, Model model) throws ParseException {
-        model.addAttribute("list", itemCRUDService.findBetween(creationDateOne, creationDateTwo));
-        return "allitems";
-    }
+//    @RequestMapping("/date")
+//    public String searchByDate (@RequestParam String creationDateOne, @RequestParam String creationDateTwo, Model model) throws ParseException {
+//        model.addAttribute("list", itemCRUDService.findBetween(creationDateOne, creationDateTwo));
+//        return "allitems";
+//    }
 }

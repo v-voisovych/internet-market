@@ -11,7 +11,7 @@
     </head>
 
     <body>
-        <h1><c:forEach var="el" items="${list}"><p>${el}</p></c:forEach> </h1>
+        <h1>${item} </h1>
 
 
     </body>

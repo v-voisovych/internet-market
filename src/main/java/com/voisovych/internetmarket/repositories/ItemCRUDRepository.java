@@ -10,7 +10,8 @@ import java.util.List;
 @Repository
 public interface ItemCRUDRepository extends CrudRepository<Item,Long> {
 
-    List<Item> findAllByName(String name);
+    List<Item> findAll();
+    Item findById(long id);
 
     List<Item> findItemsByTypeAndName(String type, String name);
 
