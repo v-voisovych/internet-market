@@ -23,7 +23,11 @@
                     <li><a href="/type?type=console">Консолі.</a></li>
                     <li><a href="/type?type=laptop">Ноутбуки.</a></li>
                     <li><a href="/type?type=pc">Комп'ютери.</a></li>
-                    <li><a href="/itemform">Додати товар.</a></li>
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <li><a href="/itemform">Додати товар.</a></li>
+                    </sec:authorize>
+                    <li><a href="#verh"> Вгору.</a></li>
+                    <li><a href="/login" methods="POST">logout</a></li>
                     <li><a name="verh"></a></li>
                 </ul>
             </nav>
@@ -63,7 +67,10 @@
                     <li><a href="/type?type=console">Консолі.</a></li>
                     <li><a href="/type?type=laptop">Ноутбуки.</a></li>
                     <li><a href="/type?type=pc">Комп'ютери.</a></li>
-                    <li><a href="/itemform">Додати товар.</a></li>
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <li><a href="/itemform">Додати товар.</a></li>
+                    </sec:authorize>
+                    <li><a href="#verh"> Вгору.</a></li>
                     <li><a href="#verh"> Вгору.</a></li>
                 </ul>
             </div>

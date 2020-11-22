@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <html>
@@ -24,7 +25,11 @@
                     <li><a href="/type?type=console">Консолі.</a></li>
                     <li><a href="/type?type=laptop">Ноутбуки.</a></li>
                     <li><a href="/type?type=pc">Комп'ютери.</a></li>
-                    <li><a href="/itemform">Додати товар.</a></li>
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <li><a href="/itemform">Додати товар.</a></li>
+                    </sec:authorize>
+                    <li><a href="#verh"></a></li>
+                    <li><a href="/login" methods="POST">logout</a></li>
                     <li><a name="verh"></a></li>
                 </ul>
             </nav>
@@ -67,8 +72,10 @@
                     <li><a href="/type?type=console">Консолі.</a></li>
                     <li><a href="/type?type=laptop">Ноутбуки.</a></li>
                     <li><a href="/type?type=pc">Комп'ютери.</a></li>
-                    <li><a href="/itemform">Додати товар.</a></li>
-                    <li><a href="#verh"> Наверх.</a></li>
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <li><a href="/itemform">Додати товар.</a></li>
+                    </sec:authorize>
+                    <li><a href="#verh"> Вгору.</a></li>
                 </ul>
             </div>
         </footer>

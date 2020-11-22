@@ -1,4 +1,4 @@
-package com.voisovych.internetmarket.models;
+package com.voisovych.internetmarket.model;
 
 import org.hibernate.annotations.CreationTimestamp;
 

@@ -3,7 +3,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
+
 
 <html>
     <head>
@@ -23,7 +25,17 @@
                     <li><a href="/type?type=console">Консолі.</a></li>
                     <li><a href="/type?type=laptop">Ноутбуки.</a></li>
                     <li><a href="/type?type=pc">Комп'ютери.</a></li>
-                    <li><a href="/itemform">Додати товар.</a></li>
+
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <li><a href="/itemform">Додати товар.</a></li>
+                        <li><a href="/users">Користувачі.</a></li>
+                    </sec:authorize>
+
+                    <li>
+                        <form action="/logout" method="post">
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
                     <li><a name="verh"></a></li>
                 </ul>
             </nav>
@@ -36,7 +48,11 @@
                         <h1>Наші товари.</h1>
 
                         <table>
-                            <tr><th>Номер</th><th>Найменування</th><th>Опис</th><th>Кількість</th><th>Ціна</th><th>Категорія товару</th><th>Дата створення</th><th>Редагувати</th><th>Видалити</th></tr>
+                            <tr><th>Номер</th><th>Найменування</th><th>Опис</th><th>Кількість</th><th>Ціна</th><th>Категорія товару</th><th>Дата створення</th>
+                                <sec:authorize access="hasAnyRole('ADMIN', 'SELLER')"><th>Редагувати</th></sec:authorize>
+                                <sec:authorize access="hasRole('ADMIN')"><th>Видалити</th></sec:authorize>
+                            </tr>
+
                             <c:forEach var="el" items="${list}">
                                 <tr>
                                     <td>${el.count}</td>
@@ -46,26 +62,28 @@
                                     <td>${el.price}</td>
                                     <td>${el.type}</td>
                                     <td>${el.creationDate}</td>
-                                    <td><button type="button"><a href="/edit?id=${el.id}">edit</a></button></td>
-                                    <td><button type="button"><a href="/delete?id=${el.id}">delete</a></button></td>
+                                    <sec:authorize access="hasAnyRole('ADMIN', 'SELLER')">
+                                        <td><button type="button"><a href="/edit?id=${el.id}">edit</a></button></td>
+                                    </sec:authorize>
+
+                                    <sec:authorize access="hasRole('ADMIN')">
+                                        <td><button type="button"><a href="/delete?id=${el.id}">delete</a></button></td>
+                                    </sec:authorize>
                                 </tr>
                             </c:forEach>
-
-
-                            <tr>
-                                <form action="/search" method="post">
-                                    <td><input type="text" name="count" placeholder="Сount"></td>
-                                    <td> <input type="text" name="name" placeholder="Name"></td>
-                                    <td> <input type="text" name="description" placeholder="Description"></td>
-                                    <td><input type="text" name="number" placeholder="Number"></td>
-                                    <td><input type="text" name="price" placeholder="Price"></td>
-                                    <td><input type="text" name="type" placeholder="Type"></td>
-                                    <td><input type="text" name="creationDate" placeholder="CreationDate"></td>
-                                    <td> <button type="submit" class="btn btn-warning">find</button></td>
-                                    <td> <button type="submit" class="btn btn-warning">find</button></td>
-                                </form>
-                            </tr>
                         </table>
+
+                        <form action="/search" method="post">
+                            <input type="text" name="count" placeholder="Сount">
+                            <input type="text" name="name" placeholder="Name">
+                            <input type="text" name="description" placeholder="Description">
+                            <input type="text" name="number" placeholder="Number">
+                            <input type="text" name="price" placeholder="Price">
+                            <input type="text" name="type" placeholder="Type">
+                            <input type="text" name="creationDate" placeholder="CreationDate">
+                            <button type="submit" class="btn btn-warning">find</button>
+                        </form>
+
 
                     </div>
                 </div>
@@ -80,7 +98,9 @@
                     <li><a href="/type?type=console">Консолі.</a></li>
                     <li><a href="/type?type=laptop">Ноутбуки.</a></li>
                     <li><a href="/type?type=pc">Комп'ютери.</a></li>
-                    <li><a href="/itemform">Додати товар.</a></li>
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <li><a href="/itemform">Додати товар.</a></li>
+                    </sec:authorize>
                     <li><a href="#verh"> Вгору.</a></li>
                 </ul>
             </div>
