@@ -33,10 +33,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/registration").not().fullyAuthenticated()
+                .antMatchers("/registration").anonymous()
                 .antMatchers("/", "/type", "/search").hasAnyRole("USER", "SELLER", "ADMIN")
                 .antMatchers("/edit", "/editsave").hasAnyRole("SELLER", "ADMIN")
-                .antMatchers("/itemform", "/save", "/delete", "users").hasRole("ADMIN")
+                .antMatchers("/itemform", "/save", "/delete", "/users", "/adduser").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -59,9 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    protected void configureGlobal (AuthenticationManagerBuilder auth) throws Exception{
+    protected void configure(final AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
     }
-
-
 }

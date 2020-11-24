@@ -27,7 +27,9 @@
                         <li><a href="/itemform">Додати товар.</a></li>
                     </sec:authorize>
                     <li><a href="#verh"> Вгору.</a></li>
-                    <li><a href="/login" methods="POST">logout</a></li>
+                    <form action="/logout" method="post">
+                        <button type="submit">Logout</button>
+                    </form>
                     <li><a name="verh"></a></li>
                 </ul>
             </nav>

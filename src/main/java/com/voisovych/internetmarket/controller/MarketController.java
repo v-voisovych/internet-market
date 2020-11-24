@@ -37,7 +37,7 @@ public class MarketController {
     }
 
     @RequestMapping(value = "/edit")
-    public String edit ( @RequestParam long id, Model model){
+    public String edit (@RequestParam long id, Model model){
         model.addAttribute("edit", itemCRUDService.findById(id));
         return "editform";
     }
@@ -90,11 +90,6 @@ public class MarketController {
         }
         model.addAttribute("list", itemCRUDService.search(item));
         return "allitems";
-    }
-
-    @RequestMapping("/login")
-    public String login(){
-        return "login";
     }
 
 }

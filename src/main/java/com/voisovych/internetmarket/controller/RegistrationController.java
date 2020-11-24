@@ -16,26 +16,25 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/registration")
-    public String registration(Model model){
+    @RequestMapping("/login")
+    public String login(Model model){
         model.addAttribute("userForm", new User());
-        return "registration";
+        return "login";
     }
 
-    @RequestMapping(value = "registration", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("userForm") User userForm, BindingResult result, Model model){
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public String addUser(@ModelAttribute("userForm") User userForm, String role, BindingResult result, Model model){
         if (result.hasErrors()){
-            return "registration";
+            return "login";
         }
         if(!userForm.getPassword().equals(userForm.getPasswordConfirm())){
             model.addAttribute("passwordError", "Passwords don't much");
-            return "registration";
+            return "login";
         }
-        if(!userService.saveUser(userForm)){
+        if(!userService.saveUser(userForm, role)){
             model.addAttribute("usernameError", "User already exists");
-            return "registration";
+            return "login";
         }
         return "redirect:/";
     }
-
 }

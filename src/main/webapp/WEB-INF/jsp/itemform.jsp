@@ -25,7 +25,9 @@
                     <li><a href="/type?type=laptop">Ноутбуки.</a></li>
                     <li><a href="/type?type=pc">Комп'ютери.</a></li>
                     <li><a href="/itemform">Додати товар.</a></li>
-                    <li><a href="/login" methods="POST">logout</a></li>
+                    <form action="/logout" method="post">
+                        <button type="submit">Logout</button>
+                    </form>
                     <li><a name="verh"></a></li>
                 </ul>
             </nav>

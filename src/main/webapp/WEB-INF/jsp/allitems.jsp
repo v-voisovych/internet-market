@@ -63,11 +63,11 @@
                                     <td>${el.type}</td>
                                     <td>${el.creationDate}</td>
                                     <sec:authorize access="hasAnyRole('ADMIN', 'SELLER')">
-                                        <td><button type="button"><a href="/edit?id=${el.id}">edit</a></button></td>
+                                        <td><button type="button"><a href="/edit?id = ${el.id}">edit</a></button></td>
                                     </sec:authorize>
 
                                     <sec:authorize access="hasRole('ADMIN')">
-                                        <td><button type="button"><a href="/delete?id=${el.id}">delete</a></button></td>
+                                        <td><button type="button"><a href="/delete?id = ${el.id}">delete</a></button></td>
                                     </sec:authorize>
                                 </tr>
                             </c:forEach>

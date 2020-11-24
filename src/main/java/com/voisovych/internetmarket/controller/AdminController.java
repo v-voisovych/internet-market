@@ -1,6 +1,7 @@
 package com.voisovych.internetmarket.controller;
 
 import com.voisovych.internetmarket.model.Item;
+import com.voisovych.internetmarket.model.User;
 import com.voisovych.internetmarket.servis.ItemCRUDService;
 import com.voisovych.internetmarket.servis.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,10 +47,11 @@ public class AdminController {
     @RequestMapping("/users")
     public String showAllUsers(Model model){
         model.addAttribute("allUsers",userService.allUser());
+        model.addAttribute("user", new User());
         return "users";
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteusers", method = RequestMethod.POST)
     public String deleteUser(@RequestParam(required = true, defaultValue = "") Long userId,
                              @RequestParam(required = true, defaultValue = "") String action,
                              Model model){
@@ -58,4 +60,25 @@ public class AdminController {
         }
         return "redirect:/users";
     }
+
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public String addUser(@ModelAttribute("user") User userForm, String role, BindingResult result, Model model){
+        if (result.hasErrors()){
+            model.addAttribute("allUsers",userService.allUser());
+            return "users";
+        }
+        if(!userForm.getPassword().equals(userForm.getPasswordConfirm())){
+            model.addAttribute("passwordError", "Passwords don't much");
+            model.addAttribute("allUsers",userService.allUser());
+            return "users";
+        }
+        if(!userService.saveUser(userForm, role)){
+            model.addAttribute("usernameError", "User already exists");
+            model.addAttribute("allUsers",userService.allUser());
+            return "users";
+        }
+        return "redirect:/users";
+    }
+
+
 }
