@@ -8,7 +8,7 @@
 
 <html>
     <head>
-        <link href="/css/editstile.css" rel="stylesheet" type="text/css">
+        <link href="/css/viewitemstile.css" rel="stylesheet" type="text/css">
     </head>
 
     <body>
@@ -27,8 +27,8 @@
                     <li><a href="/type?type=pc">Комп'ютери.</a></li>
                     <sec:authorize access="hasRole('ADMIN')">
                         <li><a href="/itemform">Додати товар.</a></li>
+                        <li><a href="/users">Користувачі.</a></li>
                     </sec:authorize>
-                    <li><a href="#verh"></a></li>
                     <form action="/logout" method="post">
                         <button type="submit">Logout</button>
                     </form>
@@ -39,29 +39,28 @@
 
         <div class="conteiner">
             <div id="link1">
-                <img src="/img/ps7.jpg">
-            </div>
-            <div class="title_item">
-                <div>
-                    <h1>Редагований товар: ${edit.count}; ${edit.name}; ${edit.description}; ${edit.number}; ${edit.price}; ${edit.type}</h1>
-                    <form action="/editsave" method="post">
-                        <p><input hidden type="text" name="id" value="${edit.id}"></p>
-                        <p><input type="text" name="count" value="${edit.count}"></p>
-                        <p><input type="text" name="name" value="${edit.name}"></p>
-                        <p><input type="text" name="description" value="${edit.description}"></p>
-                        <p><input type="text" name="number" value="${edit.number}"></p>
-                        <p><input type="text" name="price" value="${edit.price}"></p>
-                        <p><input type="text" name="creationDate" value="${edit.creationDate}"></p>
-                        <p>
-                            <select name="type">
-                                <option value="phone">Телефон</option>
-                                <option value="console">Консоль</option>
-                                <option value="laptop">Ноутбук</option>
-                                <option value="pc">Комп'ютер</option>
-                            </select>
-                        </p>
-                        <p><button type="submit" class="btn btn-warning">Save</button></p>
-                    </form>
+                <div class="title_item_add">
+                    <div>
+                        <h1>Редагований товар: ${edit.count}; ${edit.name}; ${edit.description}; ${edit.number}; ${edit.price}; ${edit.type}</h1>
+                        <form action="/editsave" method="post">
+                            <p><input hidden type="text" name="id" value="${edit.id}"></p>
+                            <p><input type="text" name="count" value="${edit.count}"></p>
+                            <p><input type="text" name="name" value="${edit.name}"></p>
+                            <p><input type="text" name="description" value="${edit.description}"></p>
+                            <p><input type="text" name="number" value="${edit.number}"></p>
+                            <p><input type="text" name="price" value="${edit.price}"></p>
+                            <p><input type="text" name="creationDate" value="${edit.creationDate}"></p>
+                            <p>
+                                <select name="type">
+                                    <option value="phone">Телефон</option>
+                                    <option value="console">Консоль</option>
+                                    <option value="laptop">Ноутбук</option>
+                                    <option value="pc">Комп'ютер</option>
+                                </select>
+                            </p>
+                            <p><button type="submit" class="btn btn-warning">Save</button></p>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

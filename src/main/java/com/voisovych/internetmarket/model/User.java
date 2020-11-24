@@ -18,6 +18,7 @@ public class User implements UserDetails {
     private String passwordConfirm;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
+    private String status;
 
     public User() {
     }
@@ -54,6 +55,13 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

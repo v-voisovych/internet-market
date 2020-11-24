@@ -52,11 +52,12 @@
                 <c:forEach items="${allUsers}" var="user">
                     <tr>
                         <td>${user.username}</td>
+                        <td>${user.status}</td>
                         <td>
                             <c:forEach items="${user.roles}" var="role">${role.name}</c:forEach>
                         </td>
                         <td>
-                            <form action="${pageContext.request.contextPath}/deleteusers" method="post">
+                            <form action="/deleteusers" method="post">
                                 <input type="hidden" name="userId" value="${user.id}"/>
                                 <input type="hidden" name="action" value="delete"/>
                                 <button type="submit">Delete</button>

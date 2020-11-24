@@ -49,8 +49,13 @@
 
                         <table>
                             <tr><th>Номер</th><th>Найменування</th><th>Опис</th><th>Кількість</th><th>Ціна</th><th>Категорія товару</th><th>Дата створення</th>
-                                <sec:authorize access="hasAnyRole('ADMIN', 'SELLER')"><th>Редагувати</th></sec:authorize>
-                                <sec:authorize access="hasRole('ADMIN')"><th>Видалити</th></sec:authorize>
+                                <sec:authorize access="hasAnyRole('ADMIN', 'SELLER')">
+                                    <th>Редагувати</th>
+                                </sec:authorize>
+
+                                <sec:authorize access="hasRole('ADMIN')">
+                                    <th>Видалити</th>
+                                </sec:authorize>
                             </tr>
 
                             <c:forEach var="el" items="${list}">
@@ -63,11 +68,21 @@
                                     <td>${el.type}</td>
                                     <td>${el.creationDate}</td>
                                     <sec:authorize access="hasAnyRole('ADMIN', 'SELLER')">
-                                        <td><button type="button"><a href="/edit?id = ${el.id}">edit</a></button></td>
+                                        <td>
+                                            <form action="/edit">
+                                                <input hidden value="${el.id}" name="id">
+                                                <button type="submit">edit</button>
+                                            </form>
+                                        </td>
                                     </sec:authorize>
 
                                     <sec:authorize access="hasRole('ADMIN')">
-                                        <td><button type="button"><a href="/delete?id = ${el.id}">delete</a></button></td>
+                                        <td>
+                                            <form action="/delete">
+                                                <input hidden value="${el.id}" name="id">
+                                                <button type="submit">delete</button>
+                                            </form>
+                                        </td>
                                     </sec:authorize>
                                 </tr>
                             </c:forEach>
@@ -83,7 +98,6 @@
                             <input type="text" name="creationDate" placeholder="CreationDate">
                             <button type="submit" class="btn btn-warning">find</button>
                         </form>
-
 
                     </div>
                 </div>

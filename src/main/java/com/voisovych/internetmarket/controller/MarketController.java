@@ -29,9 +29,6 @@ public class MarketController {
     @RequestMapping("/type")
     public String viewItemByType (@RequestParam String type, Model model){
         List<Item> list = itemCRUDService.findByType(type);
-        if (list.isEmpty()) {
-            model.addAttribute("nothing", ": відсутні");
-        }
         model.addAttribute("list", list);
         return "allitems";
     }

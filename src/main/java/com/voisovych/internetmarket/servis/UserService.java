@@ -65,6 +65,7 @@ public class UserService implements UserDetailsService {
             }
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setStatus("ACTIVE");
         userRepository.save(user);
         return true;
     }
@@ -75,5 +76,9 @@ public class UserService implements UserDetailsService {
             return true;
         }
         return false;
+    }
+
+    public User findUserByName(String userName){
+       return userRepository.findByUsername(userName);
     }
 }

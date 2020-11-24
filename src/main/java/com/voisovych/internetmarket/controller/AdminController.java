@@ -32,7 +32,7 @@ public class AdminController {
     public String saveItem (@ModelAttribute Item item, BindingResult result, Model model){
         if (result.hasErrors() || item.getName().equals("") || item.getDescription().equals("")) {
             model.addAttribute("error", "Введено неправильні дані!!!!");
-            return "erroradd";
+            return "itemform";
         }
         itemCRUDService.save(item);
         return "redirect:/itemform";
@@ -79,6 +79,4 @@ public class AdminController {
         }
         return "redirect:/users";
     }
-
-
 }

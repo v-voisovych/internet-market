@@ -68,6 +68,11 @@ nav a {
     margin-left: 2.5%;
     border-radius: 5px;
 }
+.title_item_add {
+    position: absolute;
+    top: 45%;
+    left: 20%;
+}
 
 #cont {
     padding-top: 19%;
