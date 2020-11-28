@@ -33,7 +33,7 @@
 
                     <li>
                         <form action="/logout" method="post">
-                            <button type="submit">Logout</button>
+                            <button type="submit"> ${username}, logout</button>
                         </form>
                     </li>
                     <li><a name="verh"></a></li>

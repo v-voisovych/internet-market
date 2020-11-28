@@ -13,18 +13,18 @@
     <body>
         <div class="container bgcont center-block">
             <h1>Login</h1>
-            <form name='f' action="login" method='POST'>
+            <form name='f' action="/login" method='POST'>
                 <table>
                     <tr>
                         <td>User:</td>
-                        <td><input type='text' name='username' value=''></td>
+                        <td><input type='text' name='username'></td>
                     </tr>
                     <tr>
                         <td>Password:</td>
                         <td><input type='password' name='password' /></td>
                     </tr>
                     <tr>
-                        <td><input name="submit" type="submit" value="submit" /></td>
+                        <td><button type="submit">Sing In</button></td>
                     </tr>
                 </table>
             </form>

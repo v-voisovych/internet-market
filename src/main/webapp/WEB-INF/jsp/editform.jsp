@@ -30,7 +30,7 @@
                         <li><a href="/users">Користувачі.</a></li>
                     </sec:authorize>
                     <form action="/logout" method="post">
-                        <button type="submit">Logout</button>
+                        <button type="submit">${username}, logout</button>
                     </form>
                     <li><a name="verh"></a></li>
                 </ul>
@@ -43,22 +43,20 @@
                     <div>
                         <h1>Редагований товар: ${edit.count}; ${edit.name}; ${edit.description}; ${edit.number}; ${edit.price}; ${edit.type}</h1>
                         <form action="/editsave" method="post">
-                            <p><input hidden type="text" name="id" value="${edit.id}"></p>
-                            <p><input type="text" name="count" value="${edit.count}"></p>
-                            <p><input type="text" name="name" value="${edit.name}"></p>
-                            <p><input type="text" name="description" value="${edit.description}"></p>
-                            <p><input type="text" name="number" value="${edit.number}"></p>
-                            <p><input type="text" name="price" value="${edit.price}"></p>
-                            <p><input type="text" name="creationDate" value="${edit.creationDate}"></p>
-                            <p>
-                                <select name="type">
-                                    <option value="phone">Телефон</option>
-                                    <option value="console">Консоль</option>
-                                    <option value="laptop">Ноутбук</option>
-                                    <option value="pc">Комп'ютер</option>
-                                </select>
-                            </p>
-                            <p><button type="submit" class="btn btn-warning">Save</button></p>
+                            <input hidden type="text" name="id" value="${edit.id}">
+                            <input type="text" name="count" value="${edit.count}">
+                            <input type="text" name="name" value="${edit.name}">
+                            <input type="text" name="description" value="${edit.description}">
+                            <input type="text" name="number" value="${edit.number}">
+                            <input type="text" name="price" value="${edit.price}">
+                            <input type="text" name="creationDate" value="${edit.creationDate}">
+                            <select name="type">
+                                <option value="phone">Телефон</option>
+                                <option value="console">Консоль</option>
+                                <option value="laptop">Ноутбук</option>
+                                <option value="pc">Комп'ютер</option>
+                            </select>
+                            <button type="submit" class="btn btn-warning">Save</button>
                         </form>
                     </div>
                 </div>

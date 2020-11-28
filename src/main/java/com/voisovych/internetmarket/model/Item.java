@@ -9,9 +9,8 @@ import java.util.Date;
 @Entity
 public class Item {
 
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private long id;
     private String name;
     private String type;
@@ -27,6 +26,9 @@ public class Item {
     @Override
     public String toString() {
         return count + " " + name + " " + description + " " +  number + " " + price + " " + type + " " + creationDate;
+    }
+
+    public Item() {
     }
 
     public String getType() {

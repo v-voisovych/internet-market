@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,22 +21,25 @@ public class MarketController {
     ItemCRUDService itemCRUDService;
 
     @RequestMapping("/")
-    public String viewitem (Model model){
+    public String viewitem (Model model, Principal principal){
         List<Item> list = itemCRUDService.findAll();
         model.addAttribute("list", list);
+        model.addAttribute("username", principal.getName());
         return "allitems";
     }
 
     @RequestMapping("/type")
-    public String viewItemByType (@RequestParam String type, Model model){
+    public String viewItemByType (@RequestParam String type, Model model, Principal principal){
         List<Item> list = itemCRUDService.findByType(type);
         model.addAttribute("list", list);
+        model.addAttribute("username", principal.getName());
         return "allitems";
     }
 
     @RequestMapping(value = "/edit")
-    public String edit (@RequestParam long id, Model model){
+    public String edit (@RequestParam long id, Model model, Principal principal){
         model.addAttribute("edit", itemCRUDService.findById(id));
+        model.addAttribute("username", principal.getName());
         return "editform";
     }
 
@@ -57,6 +61,7 @@ public class MarketController {
                           @RequestParam String count,
                           @RequestParam String price,
                           @RequestParam String number,
+                          Principal principal,
                           Model model) throws ParseException {
 
         if (result.hasErrors()) {
@@ -86,6 +91,7 @@ public class MarketController {
             item.setDescription(null);
         }
         model.addAttribute("list", itemCRUDService.search(item));
+        model.addAttribute("username", principal.getName());
         return "allitems";
     }
 

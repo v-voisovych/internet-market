@@ -1,5 +1,6 @@
 package com.voisovych.internetmarket.controller;
 
+import com.voisovych.internetmarket.model.Status;
 import com.voisovych.internetmarket.model.User;
 import com.voisovych.internetmarket.servis.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

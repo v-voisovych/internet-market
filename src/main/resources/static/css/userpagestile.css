@@ -1,4 +1,5 @@
 body {
+    background-color: #4a4848;
 }
 
 body a:hover {
@@ -80,6 +81,11 @@ nav a {
 h1 {
     text-align: center;
     color: #8d0505;
+}
+
+.editUserForm {
+    text-align: center;
+    font-size: 30px;
 }
 
 table {

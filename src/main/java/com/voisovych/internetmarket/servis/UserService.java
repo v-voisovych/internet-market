@@ -1,9 +1,11 @@
 package com.voisovych.internetmarket.servis;
 
 import com.voisovych.internetmarket.model.Role;
+import com.voisovych.internetmarket.model.Status;
 import com.voisovych.internetmarket.model.User;
 import com.voisovych.internetmarket.repository.RoleRepository;
 import com.voisovych.internetmarket.repository.UserRepository;
+import com.voisovych.internetmarket.security.SecurityUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,6 +27,8 @@ public class UserService implements UserDetailsService {
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    SecurityUser securityUser;
+
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(userName);
@@ -32,7 +36,8 @@ public class UserService implements UserDetailsService {
         if(user == null){
             throw new UsernameNotFoundException("User not found");
         }
-        return user;
+
+        return securityUser.fromUser(user);
     }
 
     public User findUserById(Long userId){
@@ -64,8 +69,8 @@ public class UserService implements UserDetailsService {
                 user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
             }
         }
+        user.setStatus(Status.ACTIVE);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setStatus("ACTIVE");
         userRepository.save(user);
         return true;
     }
@@ -78,7 +83,16 @@ public class UserService implements UserDetailsService {
         return false;
     }
 
-    public User findUserByName(String userName){
-       return userRepository.findByUsername(userName);
+    public void saveEditUser(User user, String role){
+        if (role.equals("seller")){
+            user.setRoles(Collections.singleton(new Role(2L, "ROLE_SELLER")));
+        }else {
+            if (role.equals("admin")) {
+                user.setRoles(Collections.singleton(new Role(3L, "ROLE_ADMIN")));
+            } else {
+                user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+            }
+        }
+        userRepository.save(user);
     }
 }

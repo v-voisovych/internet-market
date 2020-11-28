@@ -29,7 +29,7 @@
                         <li><a href="/users">Користувачі.</a></li>
                     </sec:authorize>
                     <form action="/logout" method="post">
-                        <button type="submit">Logout</button>
+                        <button type="submit">${username}, logout</button>
                     </form>
                     <li><a name="verh"></a></li>
                 </ul>

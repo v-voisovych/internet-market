@@ -4,6 +4,7 @@ import com.voisovych.internetmarket.servis.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,15 +19,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserService userService;
 
-//    @Override
-//    protected void configure(final AuthenticationManagerBuilder auth) throws Exception{
-//        auth.inMemoryAuthentication()
-//                .withUser("seller").password(passwordEncoder().encode("seller")).roles("SELLER")
-//                .and()
-//                .withUser("admin").password(passwordEncoder().encode("admin")).roles("ADMIN")
-//                .and()
-//                .withUser("user").password(passwordEncoder().encode("user")).roles("USER");
-//    }
+    @Autowired
+    protected void configure(final AuthenticationManagerBuilder auth) throws Exception{
+        auth
+                .userDetailsService(userService)
+                .passwordEncoder(bCryptPasswordEncoder())
+                .and()
+                .inMemoryAuthentication()
+                .withUser("root")
+                .password(bCryptPasswordEncoder()
+                        .encode("root"))
+                .roles("ADMIN");
+    }
+
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception{
@@ -50,16 +55,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/login");
-
     }
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
-    }
-
-    @Autowired
-    protected void configure(final AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
     }
 }
