@@ -77,30 +77,50 @@
                     <th>Status</th>
                     <th>Roles</th>
                     <th>Delete</th>
-                    <th>Edit</th>
                     </thead>
                     <c:forEach items="${allUsers}" var="user">
-                        <tr>
-                            <td>${user.username}</td>
-                            <td>${user.status}</td>
-                            <td>
+                        <td>
+                            ${user.username}
+                        </td>
+                        <td>
+                            <form action="/saveEditUsers" method="post">
+                                <input hidden type="text" name="id" value="${user.id}">
+                                <input hidden type="text" name="username" value="${user.username}">
+                                <input hidden type="text" name="password" value="${user.password}">
+                                ${user.status}
+                                <c:forEach items="${user.roles}" var="role">
+                                    <input hidden type="text" name="role" value="${role.name}">
+                                </c:forEach>
+                                <select name="status">
+                                    <option value="ACTIVE">ACTIVE</option>
+                                    <option value="BANNED">BANNED</option>
+                                </select>
+                                <button type="submit">Edit</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/saveEditUsers" method="post">
+                                <input hidden type="text" name="id" value="${user.id}">
+                                <input hidden type="text" name="username" value="${user.username}">
+                                <input hidden type="text" name="password" value="${user.password}">
+                                <input hidden type="text" name="status" value="${user.status}">
                                 <c:forEach items="${user.roles}" var="role">${role.name}</c:forEach>
-                            </td>
-                            <td>
-                                <form action="/deleteusers" method="post">
-                                    <input type="hidden" name="userId" value="${user.id}"/>
-                                    <input type="hidden" name="action" value="delete"/>
-                                    <button type="submit">Delete</button>
-                                </form>
-                            </td>
-                            <td>
-                                <form action="/editusers" method="post">
-                                    <input type="hidden" name="userId" value="${user.id}"/>
-                                    <input type="hidden" name="action" value="delete"/>
-                                    <button type="submit">Edit</button>
-                                </form>
-                            </td>
-                        </tr>
+                                <select name="role">
+                                    <option value="ROLE_ADMIN">Адміністратор</option>
+                                    <option value="ROLE_SELLER">Продавець</option>
+                                    <option value="ROLE_USER">Користувач</option>
+                                </select>
+                                <button type="submit">Edit</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/deleteusers" method="post">
+                                <input type="hidden" name="userId" value="${user.id}"/>
+                                <input type="hidden" name="action" value="delete"/>
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
                     </c:forEach>
                 </table>
             </div>

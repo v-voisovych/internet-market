@@ -28,10 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .inMemoryAuthentication()
                 .withUser("root")
                 .password(bCryptPasswordEncoder()
-                        .encode("root"))
+                .encode("root"))
                 .roles("ADMIN");
     }
-
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception{

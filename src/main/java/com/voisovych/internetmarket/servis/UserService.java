@@ -84,10 +84,10 @@ public class UserService implements UserDetailsService {
     }
 
     public void saveEditUser(User user, String role){
-        if (role.equals("seller")){
+        if (role.equals("ROLE_SELLER")){
             user.setRoles(Collections.singleton(new Role(2L, "ROLE_SELLER")));
         }else {
-            if (role.equals("admin")) {
+            if (role.equals("ROLE_ADMIN")) {
                 user.setRoles(Collections.singleton(new Role(3L, "ROLE_ADMIN")));
             } else {
                 user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));

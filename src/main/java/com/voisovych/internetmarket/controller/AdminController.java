@@ -84,13 +84,6 @@ public class AdminController {
         return "redirect:/users";
     }
 
-    @RequestMapping(value = "/editusers")
-    public String findForEdit(@RequestParam Long userId, Principal principal, Model model) {
-        model.addAttribute("editUser", userService.findUserById(userId));
-        model.addAttribute("username", principal.getName());
-        return "editusers";
-    }
-
     @RequestMapping(value = "/saveEditUsers", method = RequestMethod.POST)
     public String saveEditUser(@ModelAttribute User user, String role) {
         userService.saveEditUser(user, role);
