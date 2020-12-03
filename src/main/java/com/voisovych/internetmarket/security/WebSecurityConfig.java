@@ -1,5 +1,6 @@
 package com.voisovych.internetmarket.security;
 
+import com.voisovych.internetmarket.servis.CustomProvider;
 import com.voisovych.internetmarket.servis.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,11 +20,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     UserService userService;
 
     @Autowired
+    CustomProvider customProvider;
+
+    @Autowired
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception{
         auth
                 .userDetailsService(userService)
                 .passwordEncoder(bCryptPasswordEncoder())
                 .and()
+                .authenticationProvider(customProvider)
                 .inMemoryAuthentication()
                 .withUser("root")
                 .password(bCryptPasswordEncoder()
