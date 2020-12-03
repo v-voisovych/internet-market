@@ -69,26 +69,26 @@
                                     <td>${el.creationDate}</td>
                                     <sec:authorize access="hasAnyRole('ADMIN', 'SELLER')">
                                         <td>
-                                            <form action="/edit">
+                                            <form:form action="/edit">
                                                 <input hidden value="${el.id}" name="id">
                                                 <button type="submit">edit</button>
-                                            </form>
+                                            </form:form>
                                         </td>
                                     </sec:authorize>
 
                                     <sec:authorize access="hasRole('ADMIN')">
                                         <td>
-                                            <form action="/delete">
+                                            <form:form action="/delete" method="post">
                                                 <input hidden value="${el.id}" name="id">
                                                 <button type="submit">delete</button>
-                                            </form>
+                                            </form:form>
                                         </td>
                                     </sec:authorize>
                                 </tr>
                             </c:forEach>
                         </table>
 
-                        <form action="/search" method="post">
+                        <form:form action="/search" method="post">
                             <input type="text" name="count" placeholder="Сount">
                             <input type="text" name="name" placeholder="Name">
                             <input type="text" name="description" placeholder="Description">
@@ -97,7 +97,7 @@
                             <input type="text" name="type" placeholder="Type">
                             <input type="text" name="creationDate" placeholder="CreationDate">
                             <button type="submit" class="btn btn-warning">find</button>
-                        </form>
+                        </form:form>
 
                     </div>
                 </div>

@@ -41,7 +41,7 @@ public class AdminController {
         return "redirect:/itemform";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String deleteItem(@RequestParam long id) {
         itemCRUDService.delete(id);
         return "redirect:/";

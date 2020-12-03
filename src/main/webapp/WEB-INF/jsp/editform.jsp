@@ -42,7 +42,7 @@
                 <div class="title_item_add">
                     <div>
                         <h1>Редагований товар: ${edit.count}; ${edit.name}; ${edit.description}; ${edit.number}; ${edit.price}; ${edit.type}</h1>
-                        <form action="/editsave" method="post">
+                        <form:form action="/editsave" method="post">
                             <input hidden type="text" name="id" value="${edit.id}">
                             <input type="text" name="count" value="${edit.count}">
                             <input type="text" name="name" value="${edit.name}">
@@ -57,7 +57,7 @@
                                 <option value="pc">Комп'ютер</option>
                             </select>
                             <button type="submit" class="btn btn-warning">Save</button>
-                        </form>
+                        </form:form>
                     </div>
                 </div>
             </div>

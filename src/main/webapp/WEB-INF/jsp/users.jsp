@@ -83,7 +83,7 @@
                             ${user.username}
                         </td>
                         <td>
-                            <form action="/saveEditUsers" method="post">
+                            <form:form action="/saveEditUsers" method="post">
                                 <input hidden type="text" name="id" value="${user.id}">
                                 <input hidden type="text" name="username" value="${user.username}">
                                 <input hidden type="text" name="password" value="${user.password}">
@@ -96,10 +96,10 @@
                                     <option value="BANNED">BANNED</option>
                                 </select>
                                 <button type="submit">Edit</button>
-                            </form>
+                            </form:form>
                         </td>
                         <td>
-                            <form action="/saveEditUsers" method="post">
+                            <form:form action="/saveEditUsers" method="post">
                                 <input hidden type="text" name="id" value="${user.id}">
                                 <input hidden type="text" name="username" value="${user.username}">
                                 <input hidden type="text" name="password" value="${user.password}">
@@ -111,14 +111,14 @@
                                     <option value="ROLE_USER">Користувач</option>
                                 </select>
                                 <button type="submit">Edit</button>
-                            </form>
+                            </form:form>
                         </td>
                         <td>
-                            <form action="/deleteusers" method="post">
+                            <form:form action="/deleteusers" method="post">
                                 <input type="hidden" name="userId" value="${user.id}"/>
                                 <input type="hidden" name="action" value="delete"/>
                                 <button type="submit">Delete</button>
-                            </form>
+                            </form:form>
                         </td>
                     </tr>
                     </c:forEach>
