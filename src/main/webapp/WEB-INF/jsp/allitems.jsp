@@ -32,9 +32,9 @@
                     </sec:authorize>
 
                     <li>
-                        <form action="/logout" method="post">
+                        <form:form action="/logout" method="post">
                             <button type="submit"> ${username}, logout</button>
-                        </form>
+                        </form:form>
                     </li>
                     <li><a name="verh"></a></li>
                 </ul>

@@ -13,7 +13,7 @@
     <body>
         <div class="container bgcont center-block">
             <h1>Login</h1>
-            <form name='f' action="/login" method='POST'>
+            <form:form name='f' action="/login" method='POST'>
                 <table>
                     <tr>
                         <td>User:</td>
@@ -27,7 +27,7 @@
                         <td><button type="submit">Sing In</button></td>
                     </tr>
                 </table>
-            </form>
+            </form:form>
         </div>
         <div class="container bgcont center-block">
             <form:form method="POST" action="/registration" modelAttribute="userForm">
