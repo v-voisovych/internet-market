@@ -1,6 +1,5 @@
 package com.voisovych.internetmarket.controller;
 
-import com.voisovych.internetmarket.model.Status;
 import com.voisovych.internetmarket.model.User;
 import com.voisovych.internetmarket.servis.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class RegistrationController {

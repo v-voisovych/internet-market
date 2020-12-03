@@ -5,7 +5,6 @@ import com.voisovych.internetmarket.model.Status;
 import com.voisovych.internetmarket.model.User;
 import com.voisovych.internetmarket.repository.RoleRepository;
 import com.voisovych.internetmarket.repository.UserRepository;
-import com.voisovych.internetmarket.security.SecurityUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,8 +26,6 @@ public class UserService implements UserDetailsService {
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    SecurityUser securityUser;
-
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(userName);
@@ -37,12 +34,7 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found");
         }
 
-        return securityUser.fromUser(user);
-    }
-
-    public User findUserById(Long userId){
-        Optional<User> userFromDb = userRepository.findById(userId);
-        return userFromDb.orElse(new User());
+        return user.fromUser(user);
     }
 
     public List<User> allUser(){
