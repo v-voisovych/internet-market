@@ -1,10 +1,14 @@
 package com.voisovych.internetmarket.model;
 
+
 import org.hibernate.annotations.CreationTimestamp;
+
 
 import javax.persistence.*;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class Item {
@@ -12,6 +16,7 @@ public class Item {
     @Id
     @GeneratedValue
     private long id;
+    @NotNull
     private String name;
     private String type;
     private String description;
@@ -25,10 +30,36 @@ public class Item {
 
     @Override
     public String toString() {
-        return count + " " + name + " " + description + " " +  number + " " + price + " " + type + " " + creationDate;
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", description='" + description + '\'' +
+                ", number=" + number +
+                ", price=" + price +
+                ", count=" + count +
+                ", creationDate=" + creationDate +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return id == item.id && Objects.equals(name, item.name) && Objects.equals(type, item.type) && Objects.equals(description, item.description) && Objects.equals(number, item.number) && Objects.equals(price, item.price) && Objects.equals(count, item.count) && Objects.equals(creationDate, item.creationDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, type, description, number, price, count, creationDate);
     }
 
     public Item() {
+    }
+
+    public Item(@NotNull String name) {
+        this.name = name;
     }
 
     public String getType() {
@@ -43,7 +74,7 @@ public class Item {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -95,7 +126,4 @@ public class Item {
         this.creationDate = creation_date;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 }

@@ -5,5 +5,4 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User,Long> {
     User findByUsername(String userName);
-    User findByPassword(String password);
 }

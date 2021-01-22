@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.NestedServletException;
 
 import java.security.Principal;
 import java.text.ParseException;
@@ -21,7 +22,7 @@ public class MarketController {
     ItemCRUDService itemCRUDService;
 
     @RequestMapping("/")
-    public String viewitem (Model model, Principal principal){
+    public String viewItem (Model model, Principal principal){
         List<Item> list = itemCRUDService.findAll();
         model.addAttribute("list", list);
         model.addAttribute("username", principal.getName());
@@ -45,12 +46,10 @@ public class MarketController {
 
     @RequestMapping(value = "/editsave", method = RequestMethod.POST)
     public String editSave (@ModelAttribute Item item, BindingResult result, String creationDate, Model model) throws ParseException {
-        if (result.hasErrors()) {
-            Date creationDateP = new SimpleDateFormat("yyyy-MM-dd").parse(creationDate);
-            item.setCreationDate(creationDateP);
-        }
-            long id = item.getId();
-            model.addAttribute("id", id);
+        Date creationDateP = new SimpleDateFormat("yyyy-MM-dd").parse(creationDate);
+        item.setCreationDate(creationDateP);
+        long id = item.getId();
+        model.addAttribute("id", id);
         itemCRUDService.save(item);;
         return "redirect:/";
     }

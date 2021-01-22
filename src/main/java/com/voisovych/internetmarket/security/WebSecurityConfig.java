@@ -16,13 +16,17 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    UserService userService;
+    private UserService userService;
+    private CustomProvider customProvider;
 
     @Autowired
-    CustomProvider customProvider;
+    public WebSecurityConfig(UserService userService, CustomProvider customProvider) {
+        this.userService = userService;
+        this.customProvider = customProvider;
+    }
 
-    @Autowired
+
+    @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception{
         auth
                 .userDetailsService(userService)
@@ -39,13 +43,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception{
         http
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/registration").anonymous()
-                .antMatchers("/", "/type", "/search").hasAnyRole("USER", "SELLER", "ADMIN")
+                .antMatchers("/", "/type", "/search", "/allItemRest", "/deleteItemRest", "/findItemRest", "/addListItemsRest","/addItemRest", "/addBus", "/allBusses", "/deleteBus").hasAnyRole("USER", "SELLER", "ADMIN")
                 .antMatchers("/edit", "/editsave").hasAnyRole("SELLER", "ADMIN")
                 .antMatchers("/itemform", "/save", "/delete", "/users", "/adduser").hasRole("ADMIN")
                 .anyRequest().authenticated()
-                .and()
+
+//               !!!!!!!! REST SECURITY!!!!!!!!!!
+                .and().httpBasic()
+                .and().sessionManagement().disable()
+
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .loginProcessingUrl("/login")
@@ -57,10 +66,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/login");
+//                .and()
+//                .exceptionHandling()
+//                .accessDeniedHandler(customAccessDenied());
     }
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
+//
+//    @Bean
+//    public CustomAccessDenied customAccessDenied() {
+//        return new CustomAccessDenied();
+//    }
 }

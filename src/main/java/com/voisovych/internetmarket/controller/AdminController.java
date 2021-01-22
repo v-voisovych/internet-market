@@ -4,6 +4,8 @@ import com.voisovych.internetmarket.model.Item;
 import com.voisovych.internetmarket.model.User;
 import com.voisovych.internetmarket.servis.ItemCRUDService;
 import com.voisovych.internetmarket.servis.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,33 +20,38 @@ import java.security.Principal;
 @Controller
 public class AdminController {
 
-    @Autowired
-    ItemCRUDService itemCRUDService;
+    Logger logger = LogManager.getLogger(AdminController.class);
+
+    private ItemCRUDService itemCRUDService;
+    private UserService userService;
 
     @Autowired
-    UserService userService;
-
-    @RequestMapping("/itemform")
-    public String showItemForm(Model model, Principal principal) {
-        model.addAttribute("command", new Item());
-        model.addAttribute("username", principal.getName());
-        return "itemform";
+    public AdminController(ItemCRUDService itemCRUDService, UserService userService) {
+        this.itemCRUDService = itemCRUDService;
+        this.userService = userService;
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveItem(@ModelAttribute Item item, BindingResult result, Model model) {
+    public String saveItem(@ModelAttribute Item item, BindingResult result, Model model, Principal principal) {
         if (result.hasErrors() || item.getName().equals("") || item.getDescription().equals("")) {
             model.addAttribute("error", "Введено неправильні дані!!!!");
-            return "itemform";
+            return "redirect:/";
         }
         itemCRUDService.save(item);
-        return "redirect:/itemform";
+        logger.info("Item {} was added by user with User Name {}", item.getName(), principal.getName());
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String deleteItem(@RequestParam long id) {
-        itemCRUDService.delete(id);
-        return "redirect:/";
+    public String deleteItem(@RequestParam long id, Principal principal) {
+        Item item = itemCRUDService.findById(id);
+        if(itemCRUDService.delete(id)){
+            logger.info("Item with name: {} deleted by user {}", item.getName(), principal.getName());
+            return "redirect:/";
+        }else {
+            logger.warn("Item with id {} wasn't deleted",  id);
+            return "redirect:/";
+        }
     }
 
     @RequestMapping("/users")

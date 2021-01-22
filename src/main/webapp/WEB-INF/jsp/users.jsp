@@ -27,7 +27,7 @@
                     <li><a href="/type?type=pc">Комп'ютери.</a></li>
 
                     <sec:authorize access="hasRole('ADMIN')">
-                        <li><a href="/itemform">Додати товар.</a></li>
+                        <li><a href="/">Додати товар.</a></li>
                         <li><a href="/users">Користувачі.</a></li>
                     </sec:authorize>
 

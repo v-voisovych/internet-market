@@ -9,10 +9,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 @Controller
 public class RegistrationController {
+    Logger logger = LogManager.getLogger(RegistrationController.class);
 
     @Autowired
     private UserService userService;
